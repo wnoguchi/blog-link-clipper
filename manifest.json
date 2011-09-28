@@ -1,0 +1,19 @@
+{
+  "name": "BlogLinkClipper",
+  "version": "0.3.0",
+  "description": "現在表示中のページのURLとタイトルを様々な形式でコピーする拡張機能。Twitterユーザーや、ブロガー向けの拡張機能です。",
+  "icons": {
+    "16": "icon_16.png",
+    "128": "icon_128.png"
+  },
+  "browser_action": {
+    "default_icon": "icon_16.png",
+    "popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "clipboardWrite",
+    "cookies",
+    "*://*/*"
+  ]
+}
