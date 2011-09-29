@@ -2,37 +2,39 @@
 <html lang="ja-JP">
 <head>
 	<meta charset="UTF-8">
-  <meta name="author" content="Wataru Noguchi <wnoguchi.0727@gmail.com>" />
+  <meta name="author" content="Wataru Noguchi <wnoguchi@pg1x.com>" />
   <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
   <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>
+  <script type="text/javascript" src="js/i18n.js"></script>
 </head>
 <body>
   <form>
     <div>
       <p>
-        <strong>一般</strong>
-        <input type="radio" name="format" id="simpleFormat" class="formatChanger" value="simple" checked="checked" /><label for="simpleFormat">シンプル</label>
-        <input type="radio" name="format" id="blogFormat" class="formatChanger" value="blog" /><label for="blogFormat">リンクタグ</label>
+        <strong><span id="generic"></span></strong>
+        <input type="radio" name="format" id="simpleFormat" class="formatChanger" value="simple" /><label for="simpleFormat"><span id="simple"></span></label>
+        <input type="radio" name="format" id="blogFormat" class="formatChanger" value="blog" checked="checked" /><label for="blogFormat"><span id="link_tag"></label>
         (<input type="checkbox" id="targetBlankCheckBox" class="formatChanger" checked="checked" /><label for="targetBlankCheckBox">target="_blank"</label>
-        <input type="checkbox" id="clipWithListTagCheckBox" class="formatChanger" /><label for="clipWithListTagCheckBox">&lt;li&gt;&lt;/li&gt;ではさむ</label>)
+        <input type="checkbox" id="clipWithListTagCheckBox" class="formatChanger" /><label for="clipWithListTagCheckBox"><span id="lili"></span></label>)
       </p>
       <p>
-        <strong>Wiki記法</strong>
-        <input type="radio" name="format" id="hatenaFormat" class="formatChanger" value="hatena" /><label for="hatenaFormat">はてな</label>
-        <input type="radio" name="format" id="mediaFormat" class="formatChanger" value="media" /><label for="mediaFormat">MediaWiki</label>
-        <input type="radio" name="format" id="pukiFormat" class="formatChanger" value="puki" /><label for="pukiFormat">PukiWiki</label>
-        <input type="radio" name="format" id="redmineFormat" class="formatChanger" value="redmine" /><label for="redmineFormat">Redmine</label>
+        <strong><span id="wiki"></span></strong>
+        <input type="radio" name="format" id="hatenaFormat" class="formatChanger" value="hatena" /><label for="hatenaFormat"><span id="hatena"></span></label>
+        <input type="radio" name="format" id="mediaFormat" class="formatChanger" value="media" /><label for="mediaFormat"><span id="mediawiki"></span></label>
+        <input type="radio" name="format" id="pukiFormat" class="formatChanger" value="puki" /><label for="pukiFormat"><span id="pukiwiki"></span></label>
+        <input type="radio" name="format" id="redmineFormat" class="formatChanger" value="redmine" /><label for="redmineFormat"><span id="redmine"></span></label>
       </p>
       <p>
-        <input type="checkbox" id="noNewlineCheckBox" class="formatChanger" /><label for="noNewlineCheckBox">末尾に改行を入れない</label>
+        <input type="checkbox" id="noNewlineCheckBox" class="formatChanger" /><label for="noNewlineCheckBox"><span id="not_insert_newline"></span></label>
+        <input type="checkbox" id="shorten" class="formatChanger" /><label for="shorten"><span id="url_shorten"></span></label>
       </p>
       
       <!-- フォーマットされた文字列を表示するエリア -->
       <textarea id="text"></textarea>
       
       <!-- コピーボタン -->
-      <input id="copyButton" type="button" value="テキストエリアの内容をコピー" />
+      <input id="copyButton" type="button" value="" />
       
       <!-- メッセージ領域 -->
       <span id="notice"></span>

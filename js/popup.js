@@ -1,15 +1,18 @@
 
 /**
  * ポップアップJavaScript
- * @author Wataru Noguchi <wnoguchi.0727@gmail.com>
+ * @author Wataru Noguchi <wnoguchi@pg1x.com>
  */
 
 var c = chrome;
 var ws = c.windows;
 var tbs = c.tabs;
 
+// Google URL Shortener API key
+var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
+
 $(function() {
-  manageSelection($('#simpleFormat'));
+  manageSelection($('#blogFormat'));
   setTextAreaUrlAndTitle();
   
   // 設定が変更されたらテキストエリアの内容を変更するイベント
@@ -24,7 +27,7 @@ $(function() {
     $('#text').select();
     document.execCommand("Copy");
     
-    $('#notice').html('クリップボードにコピーしました！');
+    $('#notice').html(chrome.i18n.getMessage("notice"));
     setTimeout(function () {
       $('#notice').html('');
     }, 5000);
@@ -41,6 +44,25 @@ function setTextAreaUrlAndTitle() {
         var url = tab.url;
         var title = tab.title;
         var formattedLinkText = '';
+        
+        // goo.gl でURLを短縮するかどうか
+        var shortenUrlEnable = $('#shorten').is(':checked');
+        if (shortenUrlEnable) {
+          // URL 短縮処理
+          $.ajax({
+            async: false, // URL 短縮してから文字列を組み立てるため同期処理とする
+            type: 'POST',
+            url: 'https://www.googleapis.com/urlshortener/v1/url?key=' + googleAPIKey,
+            contentType: 'application/json',
+            data: "{ \"longUrl\": \"" + url + "\" }",
+            success: function (data, dataType) {
+              url = data.id;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              alert(XMLHttpRequest.responseText);
+            }
+          });
+        }
         
         // フォーマット判別
         selectedFormat = $('input[type=radio][name=format]:checked').val();
@@ -88,6 +110,7 @@ function setTextAreaUrlAndTitle() {
             break;
         }
         
+        // 末尾に改行を入れるかどうか
         var newline = "\n";
         var noNewline = $('#noNewlineCheckBox').is(':checked');
         if (noNewline) {
@@ -108,12 +131,13 @@ function setTextAreaUrlAndTitle() {
 function manageSelection(selectedObject) {
   selectedItemId = $(selectedObject).attr('id');
   if (selectedItemId != 'noNewlineCheckBox'
+      && selectedItemId != 'shorten'
       && selectedItemId != 'blogFormat'
       && selectedItemId != 'targetBlankCheckBox'
       && selectedItemId != 'clipWithListTagCheckBox') {
     $('#targetBlankCheckBox').attr('disabled', true);
     $('#clipWithListTagCheckBox').attr('disabled', true);
-  } else if (selectedItemId != 'noNewlineCheckBox') {
+  } else if (selectedItemId != 'noNewlineCheckBox' && selectedItemId != 'shorten') {
     $('#targetBlankCheckBox').attr('disabled', false);
     $('#clipWithListTagCheckBox').attr('disabled', false);
   }
