@@ -1,8 +1,8 @@
 
 /**
-  * ポップアップJavaScript
-  * @author Wataru Noguchi <wnoguchi.0727@gmail.com>
-  */
+ * ポップアップJavaScript
+ * @author Wataru Noguchi <wnoguchi.0727@gmail.com>
+ */
 
 var c = chrome;
 var ws = c.windows;
@@ -24,7 +24,7 @@ $(function() {
     $('#text').select();
     document.execCommand("Copy");
     
-    $('#notice').html('Text was successfully copied!');
+    $('#notice').html('クリップボードにコピーしました！');
     setTimeout(function () {
       $('#notice').html('');
     }, 5000);
@@ -52,13 +52,23 @@ function setTextAreaUrlAndTitle() {
           // リンクタグ
           case 'blog':
             var targetBlankStr = '';
+            var liStart = '';
+            var liEnd = '';
             
+            // target="_blank" チェック
             var targetBlank = $('#targetBlankCheckBox').is(':checked');
             if (targetBlank) {
               targetBlankStr = ' target="_blank"';
             }
             
-            formattedLinkText = '<a href="' + url + '"' + targetBlankStr + '>' + title +'</a>';
+            // <li></li>で挟むかどうか判別
+            var clipWithListTag = $('#clipWithListTagCheckBox').is(':checked');
+            if (clipWithListTag) {
+              liStart = '<li>';
+              liEnd = '</li>';
+            }
+            
+            formattedLinkText = liStart + '<a href="' + url + '"' + targetBlankStr + '>' + title +'</a>' + liEnd;
             break;
           // はてな記法
           case 'hatena':
@@ -78,8 +88,15 @@ function setTextAreaUrlAndTitle() {
             break;
         }
         
+        var newline = "\n";
+        var noNewline = $('#noNewlineCheckBox').is(':checked');
+        if (noNewline) {
+          newline = '';
+        }
+
+        
         // テキスト設定
-        $('#text').attr('value', formattedLinkText + "\n");
+        $('#text').attr('value', formattedLinkText + newline);
       });
     });
   } catch (e) {
@@ -90,10 +107,12 @@ function setTextAreaUrlAndTitle() {
 /** 各コントロールの選択状態をマネージする関数 */
 function manageSelection(selectedObject) {
   selectedItemId = $(selectedObject).attr('id');
-  if (selectedItemId != 'blogFormat' && selectedItemId != 'targetBlankCheckBox') {
+  if (selectedItemId != 'blogFormat' && selectedItemId != 'targetBlankCheckBox' && selectedItemId != 'clipWithListTagCheckBox') {
     $('#targetBlankCheckBox').attr('disabled', true);
+    $('#clipWithListTagCheckBox').attr('disabled', true);
   } else {
     $('#targetBlankCheckBox').attr('disabled', false);
+    $('#clipWithListTagCheckBox').attr('disabled', false);
   }
 }
 
