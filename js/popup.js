@@ -107,10 +107,13 @@ function setTextAreaUrlAndTitle() {
 /** 各コントロールの選択状態をマネージする関数 */
 function manageSelection(selectedObject) {
   selectedItemId = $(selectedObject).attr('id');
-  if (selectedItemId != 'blogFormat' && selectedItemId != 'targetBlankCheckBox' && selectedItemId != 'clipWithListTagCheckBox') {
+  if (selectedItemId != 'noNewlineCheckBox'
+      && selectedItemId != 'blogFormat'
+      && selectedItemId != 'targetBlankCheckBox'
+      && selectedItemId != 'clipWithListTagCheckBox') {
     $('#targetBlankCheckBox').attr('disabled', true);
     $('#clipWithListTagCheckBox').attr('disabled', true);
-  } else {
+  } else if (selectedItemId != 'noNewlineCheckBox') {
     $('#targetBlankCheckBox').attr('disabled', false);
     $('#clipWithListTagCheckBox').attr('disabled', false);
   }
