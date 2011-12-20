@@ -12,7 +12,7 @@ var tbs = c.tabs;
 var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
 
 $(function() {
-  manageSelection($('#blogFormat'));
+  manageSelection($('#simpleFormat'));
   setTextAreaUrlAndTitle();
   
   // 設定が変更されたらテキストエリアの内容を変更するイベント
@@ -22,17 +22,26 @@ $(function() {
   });
   
   /** コピーボタンが押されたときのアクションをバインド */
-  $('#copyButton').click(function () {
-    $('#text').focus();
-    $('#text').select();
-    document.execCommand("Copy");
-    
-    $('#notice').html(chrome.i18n.getMessage("notice"));
-    setTimeout(function () {
-      $('#notice').html('');
-    }, 5000);
-  });
+  $('#copyButton').click(copyAction);
+  
+  // オープン時にシンプル形式でコピーする
+  // 現在は popup.html 表示時にシンプルがデフォルトチェックとなっている
+  setTimeout(function () {
+    copyAction();
+  }, 100);
 });
+
+/** コピーアクション */
+function copyAction() {
+  $('#text').focus();
+  $('#text').select();
+  document.execCommand("Copy");
+  
+  $('#notice').html(chrome.i18n.getMessage("notice"));
+  setTimeout(function () {
+    $('#notice').html('');
+  }, 5000);
+}
 
 /** 現在選択されているタブのURLとタイトルを取得してテキストエリアに設定する */
 function setTextAreaUrlAndTitle() {
