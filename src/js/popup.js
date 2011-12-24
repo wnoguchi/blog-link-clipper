@@ -23,12 +23,16 @@ $(function() {
   
   /** コピーボタンが押されたときのアクションをバインド */
   $('#copyButton').click(copyAction);
-  
-  // オープン時にシンプル形式でコピーする
-  // 現在は popup.html 表示時にシンプルがデフォルトチェックとなっている
-  setTimeout(function () {
+});
+
+/**
+ * オープン時にシンプル形式でコピーする
+ * 現在は popup.html 表示時にシンプルがデフォルトチェックとなっている
+ */
+$(window).load(function () {
+  setTimeout(function() {
     copyAction();
-  }, 100);
+  }, 1000);
 });
 
 /** コピーアクション */
