@@ -1,33 +1,33 @@
-���ݕ\�����̃y�[�W�� URL �ƃ^�C�g����l�X�Ȍ`���ŃN���b�v�{�[�h�ɃR�s�[���� Google Chrome �g���@�\�ł��B
-Twitter ��A�u���O�L���쐬�̂����ɂǂ����B
+現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。
+Twitter や、ブログ記事作成のお供にどうぞ。
 
 This extension copies to clipboard URL, and Title for various formats. For Twitter or writing your Blog.
 
-�V���v���Ƀ^�C�g����URL���R�s�[����@�\�̂ق��A
-HTML�h�L�������g��u���O�������l�����Ƀ����N�^�O�Ƃ��ăt�H�[�}�b�g����@�\������܂��B
+シンプルにタイトルとURLをコピーする機能のほか、
+HTMLドキュメントやブログを書く人向けにリンクタグとしてフォーマットする機能があります。
 
 == ChangeLog ==
-=== 0.5.1 �ł̕ύX�_ ===
-�ŏ��̃N���b�v�{�[�h�R�s�[�܂ł̎��Ԃ� 1000ms �܂ŉ����i�s��C���j
-WebKit �n���� $(function () { ... }); �̋L�q�����܂������܂���ł����B
-����̍�A�A�A�N�������Ƃ������@����܂����炲�������������B�B�B
+=== 0.5.1 での変更点 ===
+最初のクリップボードコピーまでの時間を 1000ms まで延長（不具合修正）
+WebKit 系だと $(function () { ... }); の記述がうまく動きませんでした。
+苦肉の策、、、誰かもっといい方法ありましたらご教授ください。。。
 
-=== 0.5.0 �ł̕ύX�_ ===
-* �|�b�v�A�b�v�\���̃^�C�~���O�ŃV���v���`���ŃR�s�[����@�\������
+=== 0.5.0 での変更点 ===
+* ポップアップ表示のタイミングでシンプル形式でコピーする機能を実装
 
-=== 0.4.0 �ł̕ύX�_ ===
-* "�����ɉ��s�����Ȃ�"�`�F�b�N�{�b�N�X���`�F�b�N����ƃ����N�^�O���W�I�{�^���̃I�v�V�����`�F�b�N�{�b�N�X�������ƂȂ�s����C��
-* goo.gl URL �Z�k�@�\�ǉ�
-* ���ۉ�(English)
+=== 0.4.0 での変更点 ===
+* "末尾に改行を入れない"チェックボックスをチェックするとリンクタグラジオボタンのオプションチェックボックスが無効となる不具合を修正
+* goo.gl URL 短縮機能追加
+* 国際化(English)
 
-=== 0.3.0 �ł̕ύX�_ ===
-* �����N�^�O�����X�g�^�O <li></li> �ł͂��߂�悤�ɂȂ�܂���
-* �����ɉ��s������^����Ȃ����؂�ւ�����悤�ɂȂ�܂���
+=== 0.3.0 での変更点 ===
+* リンクタグをリストタグ <li></li> ではさめるようになりました
+* 末尾に改行を入れる／入れないが切り替えられるようになりました
 
-=== 0.2.0 �ł̕ύX�_ ===
-* target="_blank"�̐؂�ւ��ɑΉ����܂���
-* �e��Wiki�L�@�ɂ��Ή����܂���
-  - �͂ĂȋL�@ [url:title=]
+=== 0.2.0 での変更点 ===
+* target="_blank"の切り替えに対応しました
+* 各種Wiki記法にも対応しました
+  - はてな記法 [url:title=]
   - MediaWiki [url title]
   - PukiWiki [[title:url]]
   - Redmine "title":url
