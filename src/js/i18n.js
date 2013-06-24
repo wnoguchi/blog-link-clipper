@@ -10,6 +10,7 @@ $(function() {
   $('#link_tag').html(chrome.i18n.getMessage("link_tag"));
   $('#lili').html(chrome.i18n.getMessage("lili"));
   $('#wiki').html(chrome.i18n.getMessage("wiki"));
+  $('#markdown').html(chrome.i18n.getMessage("markdown"));
   $('#hatena').html(chrome.i18n.getMessage("hatena"));
   $('#mediawiki').html(chrome.i18n.getMessage("mediawiki"));
   $('#pukiwiki').html(chrome.i18n.getMessage("pukiwiki"));

@@ -20,6 +20,9 @@
   "wiki": {
     "message": "Wiki"
   },
+  "markdown": {
+    "message": "Markdown"
+  },
   "hatena": {
     "message": "Hatena"
   },

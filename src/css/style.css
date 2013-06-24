@@ -1,10 +1,20 @@
 @charset 'utf-8';
 
+body {
+  font-size: 12px;
+}
+
 #notice {
   font-weight: bold;
   color: #f00;
 }
+
 #text {
   width: 500px;
   height: 100px;
 }
+
+input#copyButton {
+  font-size: 2em;
+}
+

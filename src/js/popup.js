@@ -105,6 +105,10 @@ function setTextAreaUrlAndTitle() {
             
             formattedLinkText = liStart + '<a href="' + url + '"' + targetBlankStr + '>' + title +'</a>' + liEnd;
             break;
+          // Markdown
+          case 'markdown':
+            formattedLinkText = '[' + title + '](' + url + ')';
+            break;
           // はてな記法
           case 'hatena':
             formattedLinkText = '[' + url + ':title]';
