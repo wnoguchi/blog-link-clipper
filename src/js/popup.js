@@ -1,7 +1,7 @@
 
 /**
- * ポップアップJavaScript
- * @author Wataru Noguchi <wnoguchi@pg1x.com>
+ * Popup JavaScript
+ * @author Wataru Noguchi <wnoguchi.0727@gmail.com>
  */
 
 var c = chrome;
@@ -12,7 +12,17 @@ var tbs = c.tabs;
 var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
 
 $(function() {
-  manageSelection($('#simpleFormat'));
+  var selectedItemId = localStorage['selectedItemId'];
+  if (selectedItemId == undefined) {
+    // If no previous information exists, set simple format as default.
+    manageSelection($('#simpleFormat'));
+  }
+  else
+  {
+    // restore previous selected state.
+    alert(selectedItemId);
+  }
+  
   setTextAreaUrlAndTitle();
   
   // 設定が変更されたらテキストエリアの内容を変更するイベント
@@ -146,7 +156,11 @@ function setTextAreaUrlAndTitle() {
 
 /** 各コントロールの選択状態をマネージする関数 */
 function manageSelection(selectedObject) {
-  selectedItemId = $(selectedObject).attr('id');
+  var selectedItemId = $(selectedObject).attr('id');
+  
+  // save current selection state.
+  localStorage['selectedItemId'] = selectedItemId;
+  
   if (selectedItemId != 'noNewlineCheckBox'
       && selectedItemId != 'shorten'
       && selectedItemId != 'blogFormat'
@@ -159,4 +173,3 @@ function manageSelection(selectedObject) {
     $('#clipWithListTagCheckBox').attr('disabled', false);
   }
 }
-
