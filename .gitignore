@@ -1,5 +1,29 @@
-.DS_Store
-*.swp
+# Temporary files
+#------------------
+# vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+# Backup files
+#---------------
 *~
+*.orig
+*.bak
+# OS dependent
+#---------------
+.DS_Store
+Thumbs.db
+# Bundler
+#----------
+/vendor/bundle/
+/.bundle/
+# Office
+~$*
+# Vagrant
+.vagrant/
+
+# Archive
 *.zip
 
