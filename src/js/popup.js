@@ -4,6 +4,7 @@
  * @author Wataru Noguchi <wnoguchi.0727@gmail.com>
  */
 
+// utilize
 var c = chrome;
 var ws = c.windows;
 var tbs = c.tabs;
@@ -11,23 +12,35 @@ var tbs = c.tabs;
 // Google URL Shortener API key
 var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
 
+/**
+ * Bootstrap code.
+ */
 $(function() {
-  var selectedItemId = localStorage['selectedItemId'];
+  console.log("Bootstrapping BlogLinkClipper...");
+
+  var jsonStore = getJsonStore();
+
+  var selectedItemId = jsonStore.format;
   if (selectedItemId == undefined) {
     // If no previous information exists, set simple format as default.
-    manageSelection($('#simpleFormat'));
+    console.log("No format selected. Select `simple`.");
+    manageSelection();
   }
   else
   {
     // restore previous selected state.
-    alert(selectedItemId);
+    console.log("Previous selection:");
+    console.log(selectedItemId);
   }
+
+  restoreSelection();
   
   setTextAreaUrlAndTitle();
   
   // 設定が変更されたらテキストエリアの内容を変更するイベント
-  $('.formatChanger').click(function () {
-    manageSelection(this);
+  $('.formatChanger').click(function (e) {
+    console.log("format change event fired.");
+    manageSelection();
     setTextAreaUrlAndTitle();
   });
   
@@ -57,7 +70,56 @@ function copyAction() {
   }, 5000);
 }
 
-/** 現在選択されているタブのURLとタイトルを取得してテキストエリアに設定する */
+/**
+ * restore previous selection state.
+ */
+function restoreSelection() {
+
+  var jsonStore = getJsonStore();
+
+  var format = jsonStore.format;
+  
+  switch (format)
+  {
+    // currentry supported formats
+    case 'simple':
+    case 'blog':
+    case 'markdown':
+    case 'hatena':
+    case 'media':
+    case 'puki':
+    case 'redmine':
+      console.log("Restore target found:");
+      console.log(format);
+
+      selectFormat(format);
+
+      // restore target blank checkbox state
+      changeCheckboxState('#targetBlankCheckBox', jsonStore.options.targetBlankCheckBox);
+      // restore list style checkbox state
+      changeCheckboxState('#clipWithListTagCheckBox', jsonStore.options.clipWithListTagCheckBox);
+      // restore no new line checkbox state
+      changeCheckboxState('#noNewlineCheckBox', jsonStore.options.noNewlineCheckBox);
+      // restore goo.gl shorten feature checkbox state
+      changeCheckboxState('#shorten', jsonStore.options.shorten);
+
+      // update view state
+      manageViewConsistency(format);
+
+      break;
+    default:
+      // oops.
+      console.log("Restore target not found...");
+      break;
+  }
+  
+}
+
+/**
+ * get current selected tab url and title.
+ * format this.
+ * set to textarea.
+ */
 function setTextAreaUrlAndTitle() {
   
   try {
@@ -87,7 +149,7 @@ function setTextAreaUrlAndTitle() {
           });
         }
         
-        // フォーマット判別
+        // format check
         selectedFormat = $('input[type=radio][name=format]:checked').val();
         switch (selectedFormat) {
           // シンプル
@@ -100,13 +162,13 @@ function setTextAreaUrlAndTitle() {
             var liStart = '';
             var liEnd = '';
             
-            // target="_blank" チェック
+            // check target="_blank"
             var targetBlank = $('#targetBlankCheckBox').is(':checked');
             if (targetBlank) {
               targetBlankStr = ' target="_blank"';
             }
             
-            // <li></li>で挟むかどうか判別
+            // if <li></li>
             var clipWithListTag = $('#clipWithListTagCheckBox').is(':checked');
             if (clipWithListTag) {
               liStart = '<li>';
@@ -119,7 +181,7 @@ function setTextAreaUrlAndTitle() {
           case 'markdown':
             formattedLinkText = '[' + title + '](' + url + ')';
             break;
-          // はてな記法
+          // Hatena
           case 'hatena':
             formattedLinkText = '[' + url + ':title]';
             break;
@@ -137,39 +199,144 @@ function setTextAreaUrlAndTitle() {
             break;
         }
         
-        // 末尾に改行を入れるかどうか
+        // whether if ends of new line character
         var newline = "\n";
         var noNewline = $('#noNewlineCheckBox').is(':checked');
         if (noNewline) {
           newline = '';
         }
 
-        
-        // テキスト設定
+        // set text
         $('#text').attr('value', formattedLinkText + newline);
       });
     });
   } catch (e) {
-    alert(e);
+    console.log(e);
   }
 }
 
-/** 各コントロールの選択状態をマネージする関数 */
-function manageSelection(selectedObject) {
-  var selectedItemId = $(selectedObject).attr('id');
+/**
+ * manage each control selection state.
+ */
+function manageSelection() {
   
   // save current selection state.
-  localStorage['selectedItemId'] = selectedItemId;
+  var jsonStore = getJsonStore();
+
+  var selectedFormat = $('input[type=radio][name=format]:checked').val();
+  switch (selectedFormat)
+  {
+    case 'simple':
+    case 'blog':
+    case 'markdown':
+    case 'hatena':
+    case 'media':
+    case 'puki':
+    case 'redmine':
+      jsonStore.options = getOptions();
+      jsonStore.format = selectedFormat;
+      break;
+    default:
+      break;
+  }
   
-  if (selectedItemId != 'noNewlineCheckBox'
-      && selectedItemId != 'shorten'
-      && selectedItemId != 'blogFormat'
-      && selectedItemId != 'targetBlankCheckBox'
-      && selectedItemId != 'clipWithListTagCheckBox') {
-    $('#targetBlankCheckBox').attr('disabled', true);
-    $('#clipWithListTagCheckBox').attr('disabled', true);
-  } else if (selectedItemId != 'noNewlineCheckBox' && selectedItemId != 'shorten') {
+  // update view state
+  manageViewConsistency(selectedFormat);
+
+  // save current view state
+  setJsonStore(jsonStore);
+}
+
+/**
+ * view controls consistency management.
+ */
+function manageViewConsistency(format) {
+  // enable sub controls if blog format is enabled
+  // - _target=blank
+  // - list style
+  if (format == 'blog') {
     $('#targetBlankCheckBox').attr('disabled', false);
     $('#clipWithListTagCheckBox').attr('disabled', false);
+  } else {
+    $('#targetBlankCheckBox').attr('disabled', true);
+    $('#clipWithListTagCheckBox').attr('disabled', true);
   }
 }
+
+
+
+//------------------------------
+// this project utilitiy functions:
+//------------------------------
+
+/**
+ * check selected format radio button.
+ */
+function selectFormat(format) {
+  $('input[type=radio][name=format][value=' + format + ']').attr('checked', 'checked');
+}
+
+/**
+ * change checkbox state
+ *
+ * @param element CSS3 selector
+ * @param checkState selected element state flag. if this set true: checked.
+ */
+function changeCheckboxState(element, checkState) {
+  if (checkState == true) {
+    $(element).attr('checked', 'checked');
+  } else {
+    $(element).removeAttr('checked');
+  }
+}
+
+/**
+ * get current view options from read current popup controls check states.
+ */
+function getOptions() {
+  var options = {
+    clipWithListTagCheckBox: $('#clipWithListTagCheckBox').is(':checked'),
+    targetBlankCheckBox: $('#targetBlankCheckBox').is(':checked'),
+    noNewlineCheckBox: $('#noNewlineCheckBox').is(':checked'),
+    shorten: $('#shorten').is(':checked'),
+  };
+  return options;
+}
+
+
+
+//------------------------------
+// localStorage Utilities
+//------------------------------
+
+/**
+ * get json storage.
+ * this storage is localStorage abstraction layer.
+ */
+function getJsonStore() {
+  var jsonStore = localStorage.getItem('jsonStore'); 
+  if (jsonStore === null) {
+    console.log("JSON storage is empty. Create Now.");
+    jsonStore = {};
+    setJsonStore(jsonStore);
+  } else {
+    jsonStore = JSON.parse(jsonStore);
+  }
+
+  console.log("JSON store data:");
+  console.log(jsonStore);
+  return jsonStore;
+}
+
+/**
+ * save object literal to localStorage.
+ */
+function setJsonStore(jsonStore) {
+  var jsonData = JSON.stringify(jsonStore);
+  console.log("Retrieve JSON store data.");
+  console.log("JSON store data:");
+  console.log(jsonData);
+
+  localStorage.setItem('jsonStore', jsonData);
+}
+
