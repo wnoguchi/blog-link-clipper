@@ -19,7 +19,7 @@ It useful to share Twitter, Facebook or writing Your blog, and more.
 - Redmine: `"title":url`
 - MediaWiki: `[url title]`
 - PukiWiki: `[[title:url]]`
-- Hatene notation (Japanese hacker popular): `[url:title=]`
+- Hatena notation (Japanese hacker popular): `[url:title=]`
 
 ## Get it NOW!
 
