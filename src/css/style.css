@@ -2,6 +2,7 @@
 
 body {
   font-size: 12px;
+  font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 
 #notice {
@@ -15,6 +16,5 @@ body {
 }
 
 input#copyButton {
-  font-size: 2em;
+  font-size: 1em;
 }
-

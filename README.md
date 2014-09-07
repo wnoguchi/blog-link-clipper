@@ -1,42 +1,41 @@
-# BlogLinkClipper
+BlogLinkClipper
+=================
 
-## これは何？
+## About
 
-現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。
-Twitter や、ブログ記事作成のお供にどうぞ。
+Awesome Copy Extension(Google Chrome) that copies TITLE/URL combination to clipboard with various formats in current tab.  
+It useful to share Twitter, Facebook or writing Your blog, and more.
 
-This extension copies to clipboard URL, and Title for various formats. For Twitter or writing your Blog.
+## Features
 
-シンプルにタイトルとURLをコピーする機能のほか、
-HTMLドキュメントやブログを書く人向けにリンクタグとしてフォーマットする機能があります。
+- Copy TITLE/URL combination to clipboard in various format.
+- Get short url with goo.gl.
 
-## ChangeLog 
-### 0.6.0 での変更点
-* Markdownに対応しました。
-* Manifest v2に対応しました。
+## Supported formats
 
-### 0.5.1 での変更点
-最初のクリップボードコピーまでの時間を 1000ms まで延長（不具合修正）
-WebKit 系だと `$(function () { ... });` の記述がうまく動きませんでした。
-苦肉の策、、、誰かもっといい方法ありましたらご教授ください。。。
+- Simple format: between title and url, be inserted line feeds
+- HTML link tag format: `<a href="url">title</a>`. (`_target="blank"` supported.)
+- Markdown: `[title](url)`
+- Redmine: `"title":url`
+- MediaWiki: `[url title]`
+- PukiWiki: `[[title:url]]`
+- Hatene notation (Japanese hacker popular): `[url:title=]`
 
-### 0.5.0 での変更点
-* ポップアップ表示のタイミングでシンプル形式でコピーする機能を実装
+## Get it NOW!
 
-### 0.4.0 での変更点
-* "末尾に改行を入れない"チェックボックスをチェックするとリンクタグラジオボタンのオプションチェックボックスが無効となる不具合を修正
-* goo.gl URL 短縮機能追加
-* 国際化(English)
+[Chrome Web Store - BlogLinkClipper](https://chrome.google.com/webstore/detail/bloglinkclipper/jcbdhcdpoagflgclgidimolohhmofnma)
 
-### 0.3.0 での変更点
-* リンクタグをリストタグ `<li></li>` ではさめるようになりました
-* 末尾に改行を入れる／入れないが切り替えられるようになりました
+## License
 
-### 0.2.0 での変更点
-* `target="_blank"` の切り替えに対応しました
-* 各種Wiki記法にも対応しました
-  - はてな記法 `[url:title=]`
-  - MediaWiki `[url title]`
-  - PukiWiki `[[title:url]]`
-  - Redmine `"title":url`
+MIT License.
+
+## Contribute
+
+1. Fork this repository.
+1. Clone your forked repository.
+1. Open Chrome extension setting page.
+1. Check Developer mode.
+1. Click [Load unpacked extension...] button.
+1. Select prior cloned repository src directory.
+1. Good luck!
 
