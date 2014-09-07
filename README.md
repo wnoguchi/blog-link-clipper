@@ -1,56 +1,36 @@
-# BlogLinkClipper
+BlogLinkClipper
+=================
 
-## Whats this?
+## About
 
-現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。
-Twitter や、ブログ記事作成のお供にどうぞ。
+Awesome Copy Extension(Google Chrome) that copies TITLE/URL combination with various formats in current tab.  
+It useful to share Twitter, Facebook or writing Your blog, and more.
 
-This extension copies to clipboard URL, and Title for various formats. For Twitter or writing your Blog.
+## Supported formats
 
-シンプルにタイトルとURLをコピーする機能のほか、
-HTMLドキュメントやブログを書く人向けにリンクタグとしてフォーマットする機能があります。
+- Simple format: between title and url, be inserted line feeds
+- HTML link tag format: `<a href="url">title</a>`. (`_target="blank"` supported.)
+- Markdown: `[title](url)`
+- Redmine: `"title":url`
+- MediaWiki: `[url title]`
+- PukiWiki: `[[title:url]]`
+- Hatene notation (Japanese hacker popular): `[url:title=]`
 
-## Download
+## Get it NOW!
 
-- [Chrome Web Store - BlogLinkClipper](https://chrome.google.com/webstore/detail/bloglinkclipper/jcbdhcdpoagflgclgidimolohhmofnma)
+[Chrome Web Store - BlogLinkClipper](https://chrome.google.com/webstore/detail/bloglinkclipper/jcbdhcdpoagflgclgidimolohhmofnma)
 
-## ChangeLog
+## License
 
-### 0.7.0 changes.
+MIT License.
 
-**TODO**
+## Contribute
 
-### 0.6.0 changes.
+1. Fork this repository.
+1. Clone your forked repository.
+1. Open Chrome extension setting page.
+1. Check Developer mode.
+1. Click [Load unpacked extension...] button.
+1. Select prior cloned repository src directory.
+1. Good luck!
 
-* Markdownに対応しました。
-* Manifest v2に対応しました。
-
-### 0.5.1 changes.
-
-最初のクリップボードコピーまでの時間を 1000ms まで延長（不具合修正）
-WebKit 系だと `$(function () { ... });` の記述がうまく動きませんでした。
-苦肉の策、、、誰かもっといい方法ありましたらご教授ください。。。
-
-### 0.5.0 changes.
-
-* ポップアップ表示のタイミングでシンプル形式でコピーする機能を実装
-
-### 0.4.0 changes.
-
-* "末尾に改行を入れない"チェックボックスをチェックするとリンクタグラジオボタンのオプションチェックボックスが無効となる不具合を修正
-* goo.gl URL 短縮機能追加
-* 国際化(English)
-
-### 0.3.0 changes.
-
-* リンクタグをリストタグ `<li></li>` ではさめるようになりました
-* 末尾に改行を入れる／入れないが切り替えられるようになりました
-
-### 0.2.0 changes.
-
-* `target="_blank"` の切り替えに対応しました
-* 各種Wiki記法にも対応しました
-  - はてな記法 `[url:title=]`
-  - MediaWiki `[url title]`
-  - PukiWiki `[[title:url]]`
-  - Redmine `"title":url`
