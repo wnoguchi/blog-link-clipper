@@ -6,6 +6,11 @@ BlogLinkClipper
 Awesome Copy Extension(Google Chrome) that copies TITLE/URL combination to clipboard with various formats in current tab.  
 It useful to share Twitter, Facebook or writing Your blog, and more.
 
+## Features
+
+- Copy TITLE/URL combination to clipboard in various format.
+- Get short url with goo.gl.
+
 ## Supported formats
 
 - Simple format: between title and url, be inserted line feeds
