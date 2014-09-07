@@ -44,7 +44,7 @@
   "copy_button": {
     "message": "Copy Textarea content"
   },
-  "message": {
+  "success_message": {
     "message": "The text was copied successfully."
   }
 }

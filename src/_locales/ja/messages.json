@@ -44,7 +44,7 @@
   "copy_button": {
     "message": "テキストエリアの内容をコピー"
   },
-  "notice": {
+  "success_message": {
     "message": "クリップボードにコピーしました！"
   }
 }

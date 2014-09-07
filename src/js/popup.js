@@ -64,7 +64,7 @@ function copyAction() {
   $('#text').select();
   document.execCommand("Copy");
   
-  $('#notice').html(chrome.i18n.getMessage("notice"));
+  $('#notice').html(chrome.i18n.getMessage("success_message"));
   setTimeout(function () {
     $('#notice').html('');
   }, 5000);
