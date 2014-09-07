@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "BlogLinkClipper"
+  },
+  "extDescription": {
+    "message": "現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。Twitter や、ブログ記事作成のお供にどうぞ。"
+  },
+  "generic": {
+    "message": "一般"
+  },
+  "simple": {
+    "message": "シンプル"
+  },
+  "link_tag": {
+    "message": "リンクタグ"
+  },
+  "lili": {
+    "message": "&lt;li&gt;&lt;/li&gt;ではさむ"
+  },
+  "wiki": {
+    "message": "Wiki記法"
+  },
+  "markdown": {
+    "message": "Markdown"
+  },
+  "hatena": {
+    "message": "はてな"
+  },
+  "mediawiki": {
+    "message": "MediaWiki"
+  },
+  "pukiwiki": {
+    "message": "PukiWiki"
+  },
+  "redmine": {
+    "message": "Redmine"
+  },
+  "not_insert_newline": {
+    "message": "末尾に改行を入れない"
+  },
+  "url_shorten": {
+    "message": "URL短縮(goo.gl)"
+  },
+  "copy_button": {
+    "message": "テキストエリアの内容をコピー"
+  },
+  "notice": {
+    "message": "クリップボードにコピーしました！"
+  }
+}

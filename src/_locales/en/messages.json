@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "BlogLinkClipper"
+  },
+  "extDescription": {
+    "message": "This extension copies to clipboard URL, and Title for various formats. For Twitter or writing your Blog."
+  },
+  "generic": {
+    "message": "General"
+  },
+  "simple": {
+    "message": "Simple"
+  },
+  "link_tag": {
+    "message": "Link tag"
+  },
+  "lili": {
+    "message": "clip with &lt;li&gt;&lt;/li&gt;"
+  },
+  "wiki": {
+    "message": "Wiki"
+  },
+  "markdown": {
+    "message": "Markdown"
+  },
+  "hatena": {
+    "message": "Hatena"
+  },
+  "mediawiki": {
+    "message": "MediaWiki"
+  },
+  "pukiwiki": {
+    "message": "PukiWiki"
+  },
+  "redmine": {
+    "message": "Redmine"
+  },
+  "not_insert_newline": {
+    "message": "do not insert back"
+  },
+  "url_shorten": {
+    "message": "shorten (goo.gl)"
+  },
+  "copy_button": {
+    "message": "Copy Textarea content"
+  },
+  "message": {
+    "message": "The text was copied successfully."
+  }
+}
