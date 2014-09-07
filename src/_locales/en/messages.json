@@ -23,8 +23,8 @@
   "markdown": {
     "message": "Markdown"
   },
-  "hatena": {
-    "message": "Hatena"
+  "redmine": {
+    "message": "Redmine"
   },
   "mediawiki": {
     "message": "MediaWiki"
@@ -32,11 +32,11 @@
   "pukiwiki": {
     "message": "PukiWiki"
   },
-  "redmine": {
-    "message": "Redmine"
+  "hatena": {
+    "message": "Hatena"
   },
   "not_insert_newline": {
-    "message": "do not insert back"
+    "message": "do not insert new line"
   },
   "url_shorten": {
     "message": "shorten (goo.gl)"

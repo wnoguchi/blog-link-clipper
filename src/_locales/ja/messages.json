@@ -23,8 +23,8 @@
   "markdown": {
     "message": "Markdown"
   },
-  "hatena": {
-    "message": "はてな"
+  "redmine": {
+    "message": "Redmine"
   },
   "mediawiki": {
     "message": "MediaWiki"
@@ -32,8 +32,8 @@
   "pukiwiki": {
     "message": "PukiWiki"
   },
-  "redmine": {
-    "message": "Redmine"
+  "hatena": {
+    "message": "はてな"
   },
   "not_insert_newline": {
     "message": "末尾に改行を入れない"
