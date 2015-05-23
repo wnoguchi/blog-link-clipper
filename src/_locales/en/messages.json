@@ -29,6 +29,9 @@
   "mediawiki": {
     "message": "MediaWiki"
   },
+  "jira": {
+    "message": "JIRA"
+  },
   "pukiwiki": {
     "message": "PukiWiki"
   },
