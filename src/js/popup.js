@@ -34,16 +34,16 @@ $(function() {
   }
 
   restoreSelection();
-  
+
   setTextAreaUrlAndTitle();
-  
+
   // 設定が変更されたらテキストエリアの内容を変更するイベント
   $('.formatChanger').click(function (e) {
     console.log("format change event fired.");
     manageSelection();
     setTextAreaUrlAndTitle();
   });
-  
+
   /** コピーボタンが押されたときのアクションをバインド */
   $('#copyButton').click(copyAction);
 });
@@ -63,7 +63,7 @@ function copyAction() {
   $('#text').focus();
   $('#text').select();
   document.execCommand("Copy");
-  
+
   $('#notice').html(chrome.i18n.getMessage("success_message"));
   setTimeout(function () {
     $('#notice').html('');
@@ -78,7 +78,7 @@ function restoreSelection() {
   var jsonStore = getJsonStore();
 
   var format = jsonStore.format;
-  
+
   switch (format)
   {
     // currentry supported formats
@@ -89,6 +89,7 @@ function restoreSelection() {
     case 'media':
     case 'puki':
     case 'redmine':
+    case 'jira':
       console.log("Restore target found:");
       console.log(format);
 
@@ -112,7 +113,7 @@ function restoreSelection() {
       console.log("Restore target not found...");
       break;
   }
-  
+
 }
 
 /**
@@ -121,7 +122,7 @@ function restoreSelection() {
  * set to textarea.
  */
 function setTextAreaUrlAndTitle() {
-  
+
   try {
     ws.getCurrent(function (window) {
       /** 選択されているタブをハンドリングする処理 */
@@ -129,7 +130,7 @@ function setTextAreaUrlAndTitle() {
         var url = tab.url;
         var title = tab.title;
         var formattedLinkText = '';
-        
+
         // goo.gl でURLを短縮するかどうか
         var shortenUrlEnable = $('#shorten').is(':checked');
         if (shortenUrlEnable) {
@@ -148,7 +149,7 @@ function setTextAreaUrlAndTitle() {
             }
           });
         }
-        
+
         // format check
         selectedFormat = $('input[type=radio][name=format]:checked').val();
         switch (selectedFormat) {
@@ -161,20 +162,20 @@ function setTextAreaUrlAndTitle() {
             var targetBlankStr = '';
             var liStart = '';
             var liEnd = '';
-            
+
             // check target="_blank"
             var targetBlank = $('#targetBlankCheckBox').is(':checked');
             if (targetBlank) {
               targetBlankStr = ' target="_blank"';
             }
-            
+
             // if <li></li>
             var clipWithListTag = $('#clipWithListTagCheckBox').is(':checked');
             if (clipWithListTag) {
               liStart = '<li>';
               liEnd = '</li>';
             }
-            
+
             formattedLinkText = liStart + '<a href="' + url + '"' + targetBlankStr + '>' + title +'</a>' + liEnd;
             break;
           // Markdown
@@ -197,8 +198,12 @@ function setTextAreaUrlAndTitle() {
           case 'redmine':
             formattedLinkText = '"' + title + '":' + url;
             break;
+          // JIRA, Confluence
+          case 'jira':
+            formattedLinkText = '[' + title + '|' + url + "]";
+            break;
         }
-        
+
         // whether if ends of new line character
         var newline = "\n";
         var noNewline = $('#noNewlineCheckBox').is(':checked');
@@ -219,7 +224,7 @@ function setTextAreaUrlAndTitle() {
  * manage each control selection state.
  */
 function manageSelection() {
-  
+
   // save current selection state.
   var jsonStore = getJsonStore();
 
@@ -233,13 +238,14 @@ function manageSelection() {
     case 'media':
     case 'puki':
     case 'redmine':
+    case 'jira':
       jsonStore.options = getOptions();
       jsonStore.format = selectedFormat;
       break;
     default:
       break;
   }
-  
+
   // update view state
   manageViewConsistency(selectedFormat);
 
@@ -314,7 +320,7 @@ function getOptions() {
  * this storage is localStorage abstraction layer.
  */
 function getJsonStore() {
-  var jsonStore = localStorage.getItem('jsonStore'); 
+  var jsonStore = localStorage.getItem('jsonStore');
   if (jsonStore === null) {
     console.log("JSON storage is empty. Create Now.");
     jsonStore = {};
@@ -339,4 +345,3 @@ function setJsonStore(jsonStore) {
 
   localStorage.setItem('jsonStore', jsonData);
 }
-
