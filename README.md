@@ -18,6 +18,7 @@ It useful to share Twitter, Facebook or writing Your blog, and more.
 - Markdown: `[title](url)`
 - Redmine: `"title":url`
 - MediaWiki: `[url title]`
+- JIRA: `[title|url]`
 - PukiWiki: `[[title:url]]`
 - Hatena notation (Japanese hacker popular): `[url:title=]`
 

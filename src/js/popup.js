@@ -200,6 +200,9 @@ function setTextAreaUrlAndTitle() {
             break;
           // JIRA, Confluence
           case 'jira':
+            title = title.replace(/\|/g, "&#124;");
+            title = title.replace(/\[/g, "\\[");
+            title = title.replace(/\]/g, "\\]");
             formattedLinkText = '[' + title + '|' + url + "]";
             break;
         }
