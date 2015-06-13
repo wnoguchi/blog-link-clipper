@@ -1,6 +1,16 @@
 CHANGELOG
 ============
 
+0.7.2
+-------
+
+1. Escape JIRA title
+
+0.7.1
+-------
+
+1. JIRA support.
+
 0.7.0
 -------
 
