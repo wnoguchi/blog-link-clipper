@@ -15,7 +15,9 @@
     "tabs",
     "clipboardWrite",
     "cookies",
-    "*://*/*"
+    "*://*/*",
+    "https://www.google-analytics.com/",
+    "storage"
   ],
   "default_locale": "en"
 }
