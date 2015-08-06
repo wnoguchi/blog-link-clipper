@@ -131,6 +131,24 @@ function setTextAreaUrlAndTitle() {
         var title = tab.title;
         var formattedLinkText = '';
 
+        var trackingId = "bloglinkclipper-22";
+
+        // if amazon site product url shorten and affiliatize
+        // /dp/[ASIN]
+        var reg1 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?dp\/([a-zA-Z0-9]+)\/?.*/;
+        // /gp/product/[ASIN]/
+        var reg2 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?gp\/product\/([a-zA-Z0-9]+)\/?.*/;
+        // /exec/obidos/ASIN/
+        var reg3 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?exec\/obidos\/ASIN\/([a-zA-Z0-9]+)\/?.*/;
+        
+        if (reg1.test(url)) {
+          url = url.replace(reg1, "$1/dp/$2");
+        } else if (reg2.test(url)) {
+          url = url.replace(reg2, "$1/dp/$2");
+        } else if (reg3.test(url)) {
+          url = url.replace(reg3, "$1/dp/$2");
+        }
+
         // goo.gl でURLを短縮するかどうか
         var shortenUrlEnable = $('#shorten').is(':checked');
         if (shortenUrlEnable) {
