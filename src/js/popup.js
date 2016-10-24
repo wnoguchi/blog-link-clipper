@@ -90,6 +90,7 @@ function restoreSelection() {
     case 'puki':
     case 'redmine':
     case 'jira':
+    case 'rest':
       console.log("Restore target found:");
       console.log(format);
 
@@ -223,6 +224,10 @@ function setTextAreaUrlAndTitle() {
             title = title.replace(/\]/g, "\\]");
             formattedLinkText = '[' + title + '|' + url + "]";
             break;
+          // reStructuredText(reST): Sphinx
+          case 'rest':
+            formattedLinkText = '`' + title + ' <' + url + ">`_";
+            break;
         }
 
         // whether if ends of new line character
@@ -260,6 +265,7 @@ function manageSelection() {
     case 'puki':
     case 'redmine':
     case 'jira':
+    case 'rest':
       jsonStore.options = getOptions();
       jsonStore.format = selectedFormat;
       break;

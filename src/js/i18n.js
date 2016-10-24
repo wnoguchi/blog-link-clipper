@@ -16,6 +16,7 @@ $(function() {
   $('#pukiwiki').html(chrome.i18n.getMessage("pukiwiki"));
   $('#redmine').html(chrome.i18n.getMessage("redmine"));
   $('#jira').html(chrome.i18n.getMessage("jira"));
+  $('#rest').html(chrome.i18n.getMessage("rest"));
   $('#not_insert_newline').html(chrome.i18n.getMessage("not_insert_newline"));
   $('#url_shorten').html(chrome.i18n.getMessage("url_shorten"));
   $('#copyButton').val(chrome.i18n.getMessage("copy_button"));
