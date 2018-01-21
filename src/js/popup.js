@@ -91,6 +91,7 @@ function restoreSelection() {
     case 'redmine':
     case 'jira':
     case 'rest':
+    case 'dokuwiki':
       console.log("Restore target found:");
       console.log(format);
 
@@ -228,6 +229,10 @@ function setTextAreaUrlAndTitle() {
           case 'rest':
             formattedLinkText = '`' + title + ' <' + url + ">`_";
             break;
+          // DokuWiki
+          case 'dokuwiki':
+            formattedLinkText = '[[' + url + '|' + title + "]]";
+            break;
         }
 
         // whether if ends of new line character
@@ -266,6 +271,7 @@ function manageSelection() {
     case 'redmine':
     case 'jira':
     case 'rest':
+    case 'dokuwiki':
       jsonStore.options = getOptions();
       jsonStore.format = selectedFormat;
       break;
