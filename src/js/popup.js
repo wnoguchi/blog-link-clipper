@@ -142,6 +142,9 @@ function setTextAreaUrlAndTitle() {
         var reg2 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?gp\/product\/([a-zA-Z0-9]+)\/?.*/;
         // /exec/obidos/ASIN/
         var reg3 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?exec\/obidos\/ASIN\/([a-zA-Z0-9]+)\/?.*/;
+        // if redmine ugly detected. strip this
+        // /issues/123456?issue_count=3&issue_position=2&next_issue_id=12056&prev_issue_id=12345
+        var reg4 = /(https?:\/\/[0-9a-z.-].+)\/issues\/([0-9]+)\?(&?((issue_count|issue_position|next_issue_id|prev_issue_id)=[0-9]+))+/;
         
         if (reg1.test(url)) {
           url = url.replace(reg1, "$1/dp/$2");
@@ -149,6 +152,8 @@ function setTextAreaUrlAndTitle() {
           url = url.replace(reg2, "$1/dp/$2");
         } else if (reg3.test(url)) {
           url = url.replace(reg3, "$1/dp/$2");
+        } else if (reg4.test(url)) {
+          url = url.replace(reg4, "$1/issues/$2");
         }
 
         // goo.gl でURLを短縮するかどうか
