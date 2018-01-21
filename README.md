@@ -20,6 +20,7 @@ It useful to share Twitter, Facebook or writing Your blog, and more.
 - MediaWiki: `[url title]`
 - JIRA: `[title|url]`
 - PukiWiki: `[[title:url]]`
+- DokuWiki: `[[url|title]]`
 - Hatena notation (Japanese hacker popular): `[url:title=]`
 
 ## Get it NOW!

@@ -35,6 +35,9 @@
   "rest": {
     "message": "reST"
   },
+  "dokuwiki": {
+    "message": "DokuWiki"
+  },
   "pukiwiki": {
     "message": "PukiWiki"
   },
