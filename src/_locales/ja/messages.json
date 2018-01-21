@@ -32,6 +32,12 @@
   "jira": {
     "message": "JIRA"
   },
+  "rest": {
+    "message": "reST"
+  },
+  "dokuwiki": {
+    "message": "DokuWiki"
+  },
   "pukiwiki": {
     "message": "PukiWiki"
   },

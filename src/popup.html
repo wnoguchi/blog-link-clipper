@@ -1,14 +1,31 @@
 <!DOCTYPE HTML>
 <html lang="ja-JP">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="author" content="Wataru Noguchi <wnoguchi@pg1x.com>" />
   <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
   <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>
   <script type="text/javascript" src="js/i18n.js"></script>
+  <script type="text/javascript" src="google-analytics-bundle.js"></script>
 </head>
 <body>
+<script>
+// If you are using the Closure compiler:
+goog.require('analytics.getService');
+
+// You'll usually only ever have to create one service instance.
+var service = analytics.getService('blog_link_clipper');
+
+// You can create as many trackers as you want. Each tracker has its own state
+// independent of other tracker instances.
+var tracker = service.getTracker('UA-20650968-25');  // Supply your GA Tracking ID.
+
+$(function() {
+tracker.sendAppView('MainView');
+tracker.sendEvent('Flavor', 'Choose', 'Chocolate');
+});
+</script>
   <form>
     <div>
       <p>
@@ -24,7 +41,9 @@
         <input type="radio" name="format" id="redmineFormat" class="formatChanger" value="redmine" /><label for="redmineFormat"><span id="redmine"></span></label>
 				<input type="radio" name="format" id="mediaFormat" class="formatChanger" value="media" /><label for="mediaFormat"><span id="mediawiki"></span></label>
         <input type="radio" name="format" id="jiraFormat" class="formatChanger" value="jira" /><label for="jiraFormat"><span id="jira"></span></label>
+        <input type="radio" name="format" id="restFormat" class="formatChanger" value="rest" /><label for="restFormat"><span id="rest"></span></label>
         <input type="radio" name="format" id="pukiFormat" class="formatChanger" value="puki" /><label for="pukiFormat"><span id="pukiwiki"></span></label>
+        <input type="radio" name="format" id="dokuwikiFormat" class="formatChanger" value="dokuwiki" /><label for="dokuwikiFormat"><span id="dokuwiki"></span></label>
         <input type="radio" name="format" id="hatenaFormat" class="formatChanger" value="hatena" /><label for="hatenaFormat"><span id="hatena"></span></label>
       </p>
       <p>

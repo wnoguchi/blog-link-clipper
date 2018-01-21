@@ -90,6 +90,8 @@ function restoreSelection() {
     case 'puki':
     case 'redmine':
     case 'jira':
+    case 'rest':
+    case 'dokuwiki':
       console.log("Restore target found:");
       console.log(format);
 
@@ -130,6 +132,29 @@ function setTextAreaUrlAndTitle() {
         var url = tab.url;
         var title = tab.title;
         var formattedLinkText = '';
+
+        var trackingId = "bloglinkclipper-22";
+
+        // if amazon site product url shorten and affiliatize
+        // /dp/[ASIN]
+        var reg1 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?dp\/([a-zA-Z0-9]+)\/?.*/;
+        // /gp/product/[ASIN]/
+        var reg2 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?gp\/product\/([a-zA-Z0-9]+)\/?.*/;
+        // /exec/obidos/ASIN/
+        var reg3 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?exec\/obidos\/ASIN\/([a-zA-Z0-9]+)\/?.*/;
+        // if redmine ugly detected. strip this
+        // /issues/123456?issue_count=3&issue_position=2&next_issue_id=12056&prev_issue_id=12345
+        var reg4 = /(https?:\/\/[0-9a-z.-].+)\/issues\/([0-9]+)\?(&?((issue_count|issue_position|next_issue_id|prev_issue_id)=[0-9]+))+/;
+        
+        if (reg1.test(url)) {
+          url = url.replace(reg1, "$1/dp/$2");
+        } else if (reg2.test(url)) {
+          url = url.replace(reg2, "$1/dp/$2");
+        } else if (reg3.test(url)) {
+          url = url.replace(reg3, "$1/dp/$2");
+        } else if (reg4.test(url)) {
+          url = url.replace(reg4, "$1/issues/$2");
+        }
 
         // goo.gl でURLを短縮するかどうか
         var shortenUrlEnable = $('#shorten').is(':checked');
@@ -205,6 +230,14 @@ function setTextAreaUrlAndTitle() {
             title = title.replace(/\]/g, "\\]");
             formattedLinkText = '[' + title + '|' + url + "]";
             break;
+          // reStructuredText(reST): Sphinx
+          case 'rest':
+            formattedLinkText = '`' + title + ' <' + url + ">`_";
+            break;
+          // DokuWiki
+          case 'dokuwiki':
+            formattedLinkText = '[[' + url + '|' + title + "]]";
+            break;
         }
 
         // whether if ends of new line character
@@ -242,6 +275,8 @@ function manageSelection() {
     case 'puki':
     case 'redmine':
     case 'jira':
+    case 'rest':
+    case 'dokuwiki':
       jsonStore.options = getOptions();
       jsonStore.format = selectedFormat;
       break;
