@@ -191,7 +191,7 @@ function setTextAreaUrlAndTitle() {
             // check target="_blank"
             var targetBlank = $('#targetBlankCheckBox').is(':checked');
             if (targetBlank) {
-              targetBlankStr = ' target="_blank"';
+              targetBlankStr = ' target="_blank" rel="noopener"';
             }
 
             // if <li></li>
