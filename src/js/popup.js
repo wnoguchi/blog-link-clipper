@@ -160,17 +160,29 @@ function setTextAreaUrlAndTitle() {
         var shortenUrlEnable = $('#shorten').is(':checked');
         if (shortenUrlEnable) {
           var shortenUrlLongFormat = $('#shorten_secure').is(':checked');
-          var shortenOptions = ', "suffix": { "option": "SHORT" }';
+          var shortenOptions = 'SHORT';
           if (shortenUrlLongFormat) {
-            shortenOptions = ', "suffix": { "option": "UNGUESSABLE" }';
+            shortenOptions = 'UNGUESSABLE';
           }
+          var requestObj = {
+            dynamicLinkInfo: {
+              "domainUriPrefix": "l.pg1x.com",
+              "link": url
+            },
+            suffix: {
+              option: shortenOptions,
+            }
+          }
+          console.log(requestObj);
+          var dataToPost = JSON.stringify(requestObj);
+          console.log(dataToPost);
           // URL 短縮処理
           $.ajax({
             async: false, // URL 短縮してから文字列を組み立てるため同期処理とする
             type: 'POST',
             url: 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + googleAPIKey,
             contentType: 'application/json',
-            data: "{ \"longDynamicLink\": \"https://l.pg1x.com/?link=" + url + "\"" + shortenOptions + " }",
+            data: dataToPost,
             success: function (data, dataType) {
               url = data.shortLink;
             },
