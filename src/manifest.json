@@ -15,7 +15,6 @@
     "activeTab",
     "clipboardWrite",
     "cookies",
-    "*://*/*",
     "storage"
   ],
   "default_locale": "en"
