@@ -1,7 +1,7 @@
 
 /**
  * Popup JavaScript
- * @author Wataru Noguchi <wnoguchi.0727@gmail.com>
+ * @author Wataru Noguchi <wnoguchi@pg1x.com>
  */
 
 // utilize
@@ -103,11 +103,13 @@ function restoreSelection() {
       changeCheckboxState('#clipWithListTagCheckBox', jsonStore.options.clipWithListTagCheckBox);
       // restore no new line checkbox state
       changeCheckboxState('#noNewlineCheckBox', jsonStore.options.noNewlineCheckBox);
-      // restore goo.gl shorten feature checkbox state
+      // restore firebase shorten feature checkbox state
       changeCheckboxState('#shorten', jsonStore.options.shorten);
+      // restore firebase shorten feature checkbox state
+      changeCheckboxState('#shorten_secure', jsonStore.options.shortenSecure);
 
       // update view state
-      manageViewConsistency(format);
+      manageViewConsistency(format, jsonStore.options);
 
       break;
     default:
@@ -133,8 +135,6 @@ function setTextAreaUrlAndTitle() {
         var title = tab.title;
         var formattedLinkText = '';
 
-        var trackingId = "bloglinkclipper-22";
-
         // if amazon site product url shorten and affiliatize
         // /dp/[ASIN]
         var reg1 = /(https?:\/\/[0-9a-z.-]*amazon[0-9a-z.-]*)\/.*\/?dp\/([a-zA-Z0-9]+)\/?.*/;
@@ -156,18 +156,23 @@ function setTextAreaUrlAndTitle() {
           url = url.replace(reg4, "$1/issues/$2");
         }
 
-        // goo.gl でURLを短縮するかどうか
+        // firebase でURLを短縮するかどうか
         var shortenUrlEnable = $('#shorten').is(':checked');
         if (shortenUrlEnable) {
+          var shortenUrlLongFormat = $('#shorten_secure').is(':checked');
+          var shortenOptions = ', "suffix": { "option": "SHORT" }';
+          if (shortenUrlLongFormat) {
+            shortenOptions = ', "suffix": { "option": "UNGUESSABLE" }';
+          }
           // URL 短縮処理
           $.ajax({
             async: false, // URL 短縮してから文字列を組み立てるため同期処理とする
             type: 'POST',
-            url: 'https://www.googleapis.com/urlshortener/v1/url?key=' + googleAPIKey,
+            url: 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + googleAPIKey,
             contentType: 'application/json',
-            data: "{ \"longUrl\": \"" + url + "\" }",
+            data: "{ \"longDynamicLink\": \"https://l.pg1x.com/?link=" + url + "\"" + shortenOptions + " }",
             success: function (data, dataType) {
-              url = data.id;
+              url = data.shortLink;
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               alert(XMLHttpRequest.responseText);
@@ -285,7 +290,7 @@ function manageSelection() {
   }
 
   // update view state
-  manageViewConsistency(selectedFormat);
+  manageViewConsistency(selectedFormat, jsonStore.options);
 
   // save current view state
   setJsonStore(jsonStore);
@@ -294,7 +299,7 @@ function manageSelection() {
 /**
  * view controls consistency management.
  */
-function manageViewConsistency(format) {
+function manageViewConsistency(format, options) {
   // enable sub controls if blog format is enabled
   // - _target=blank
   // - list style
@@ -304,6 +309,12 @@ function manageViewConsistency(format) {
   } else {
     $('#targetBlankCheckBox').attr('disabled', true);
     $('#clipWithListTagCheckBox').attr('disabled', true);
+  }
+
+  if (options.shorten == true) {
+    $('#shorten_secure').attr('disabled', false);
+  } else {
+    $('#shorten_secure').attr('disabled', true);
   }
 }
 
@@ -343,6 +354,7 @@ function getOptions() {
     targetBlankCheckBox: $('#targetBlankCheckBox').is(':checked'),
     noNewlineCheckBox: $('#noNewlineCheckBox').is(':checked'),
     shorten: $('#shorten').is(':checked'),
+    shortenSecure: $('#shorten_secure').is(':checked'),
   };
   return options;
 }

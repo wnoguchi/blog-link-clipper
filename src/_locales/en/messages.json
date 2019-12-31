@@ -48,7 +48,10 @@
     "message": "do not insert new line"
   },
   "url_shorten": {
-    "message": "shorten (currently anavailable)"
+    "message": "shorten (l.pg1x.com powered by Firebase)"
+  },
+  "url_shorten_secure": {
+    "message": "shorten long with long format"
   },
   "copy_button": {
     "message": "Copy Textarea content"
