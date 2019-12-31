@@ -3,7 +3,7 @@
     "message": "BlogLinkClipper"
   },
   "extDescription": {
-    "message": "現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。Twitter や、ブログ記事作成のお供にどうぞ。"
+    "message": "現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。リンクのタイトル付きでの共有や、ドキュメント作成のお供にどうぞ。"
   },
   "generic": {
     "message": "一般"
@@ -48,7 +48,10 @@
     "message": "末尾に改行を入れない"
   },
   "url_shorten": {
-    "message": "URL短縮(goo.gl)"
+    "message": "URL短縮 (l.pg1x.com powered by Firebase)"
+  },
+  "url_shorten_secure": {
+    "message": "短縮 URL を短くしすぎない"
   },
   "copy_button": {
     "message": "テキストエリアの内容をコピー"

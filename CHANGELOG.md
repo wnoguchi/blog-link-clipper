@@ -1,8 +1,32 @@
 CHANGELOG
 ============
 
+0.11.0 (2019-12-31)
+---------------------------------------------------------------------
+
+1. Add HTML A tag format security: rel="noopener"
+2. Change URL Shortening service goo.gl to l.pg1x.com powered by Firebase
+3. Remove Google Analytics Tracking
+
+0.10.0 (2018-01-21)
+---------------------------------------------------------------------
+
+1. Add DokuWiki Format.
+2. Redmine Ticket URL Cleanup Feature.
+
+0.9.0 (2016-10-25)
+---------------------------------------------------------------------
+
+1. Add reStructuredText Format.
+
+0.8.0 (2015-08-06)
+---------------------------------------------------------------------
+
+1. Implement Amazon URL Cleanup feature.
+2. Google Analytics Tracking.
+
 0.7.2
--------
+---------------------------------------------------------------------
 
 1. Escape JIRA title
 

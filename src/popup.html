@@ -7,25 +7,8 @@
   <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>
   <script type="text/javascript" src="js/i18n.js"></script>
-  <script type="text/javascript" src="google-analytics-bundle.js"></script>
 </head>
 <body>
-<script>
-// If you are using the Closure compiler:
-goog.require('analytics.getService');
-
-// You'll usually only ever have to create one service instance.
-var service = analytics.getService('blog_link_clipper');
-
-// You can create as many trackers as you want. Each tracker has its own state
-// independent of other tracker instances.
-var tracker = service.getTracker('UA-20650968-25');  // Supply your GA Tracking ID.
-
-$(function() {
-tracker.sendAppView('MainView');
-tracker.sendEvent('Flavor', 'Choose', 'Chocolate');
-});
-</script>
   <form>
     <div>
       <p>
@@ -48,7 +31,7 @@ tracker.sendEvent('Flavor', 'Choose', 'Chocolate');
       </p>
       <p>
         <input type="checkbox" id="noNewlineCheckBox" class="formatChanger" /><label for="noNewlineCheckBox"><span id="not_insert_newline"></span></label>
-        <input type="checkbox" id="shorten" class="formatChanger" /><label for="shorten"><span id="url_shorten"></span></label>
+        <input type="checkbox" id="shorten" class="formatChanger" /><label for="shorten"><span id="url_shorten"></span></label><input type="checkbox" id="shorten_secure" checked="checked" class="formatChanger" /><label for="shorten_secure"><span id="url_shorten_secure"></span></label>
       </p>
 
       <!-- フォーマットされた文字列を表示するエリア -->

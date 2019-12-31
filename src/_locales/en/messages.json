@@ -3,7 +3,7 @@
     "message": "BlogLinkClipper"
   },
   "extDescription": {
-    "message": "This extension copies to clipboard URL, and Title for various formats. For Twitter or writing your Blog."
+    "message": "This extension copies to clipboard URL, and Title for various formats. For link shareling with title or writing documentation."
   },
   "generic": {
     "message": "General"
@@ -48,7 +48,10 @@
     "message": "do not insert new line"
   },
   "url_shorten": {
-    "message": "shorten (goo.gl)"
+    "message": "shorten (l.pg1x.com powered by Firebase)"
+  },
+  "url_shorten_secure": {
+    "message": "shorten long with long format"
   },
   "copy_button": {
     "message": "Copy Textarea content"
