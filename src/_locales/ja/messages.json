@@ -3,7 +3,7 @@
     "message": "BlogLinkClipper"
   },
   "extDescription": {
-    "message": "現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。Twitter や、ブログ記事作成のお供にどうぞ。"
+    "message": "現在表示中のページの URL とタイトルを様々な形式でクリップボードにコピーする Google Chrome 拡張機能です。リンクのタイトル付きでの共有や、ドキュメント作成のお供にどうぞ。"
   },
   "generic": {
     "message": "一般"

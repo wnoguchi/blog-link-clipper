@@ -3,7 +3,7 @@
     "message": "BlogLinkClipper"
   },
   "extDescription": {
-    "message": "This extension copies to clipboard URL, and Title for various formats. For Twitter or writing your Blog."
+    "message": "This extension copies to clipboard URL, and Title for various formats. For link shareling with title or writing documentation."
   },
   "generic": {
     "message": "General"
