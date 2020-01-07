@@ -12,10 +12,7 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab",
-    "clipboardWrite",
-    "cookies",
-    "storage"
+    "activeTab"
   ],
   "default_locale": "en"
 }
