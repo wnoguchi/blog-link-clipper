@@ -1,18 +1,24 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_extName__",
   "description": "__MSG_extDescription__",
-  "version": "0.11.2",
+  "version": "0.12.1",
   "icons": {
     "16": "icon_16.png",
     "128": "icon_128.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "icon_16.png",
     "default_popup": "popup.html"
   },
   "permissions": [
     "activeTab"
   ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "default_locale": "en"
 }

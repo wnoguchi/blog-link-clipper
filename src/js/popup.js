@@ -1,4 +1,3 @@
-
 /**
  * Popup JavaScript
  * @author Wataru Noguchi <wnoguchi@pg1x.com>
@@ -10,7 +9,7 @@ var ws = c.windows;
 var tbs = c.tabs;
 
 // Google URL Shortener API key
-var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
+// var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
 
 /**
  * Bootstrap code.
@@ -130,7 +129,8 @@ function setTextAreaUrlAndTitle() {
   try {
     ws.getCurrent(function (window) {
       /** 選択されているタブをハンドリングする処理 */
-      tbs.getSelected(window.id, function (tab) {
+      tbs.query({ active: true, windowId: window.id }, function (tabs) {
+        var tab = tabs[0];
         var url = tab.url;
         var title = tab.title;
         var formattedLinkText = '';
@@ -165,13 +165,7 @@ function setTextAreaUrlAndTitle() {
             shortenOptions = 'UNGUESSABLE';
           }
           var requestObj = {
-            dynamicLinkInfo: {
-              "domainUriPrefix": "l.pg1x.com",
-              "link": url
-            },
-            suffix: {
-              option: shortenOptions,
-            }
+            "url": url
           }
           console.log(requestObj);
           var dataToPost = JSON.stringify(requestObj);
@@ -180,11 +174,11 @@ function setTextAreaUrlAndTitle() {
           $.ajax({
             async: false, // URL 短縮してから文字列を組み立てるため同期処理とする
             type: 'POST',
-            url: 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + googleAPIKey,
+            url: 'https://pg1x.link/api/link',
             contentType: 'application/json',
             data: dataToPost,
             success: function (data, dataType) {
-              url = data.shortLink;
+              url = data.short_url;
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               alert(XMLHttpRequest.responseText);
