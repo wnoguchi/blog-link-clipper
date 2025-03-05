@@ -8,8 +8,8 @@ var c = chrome;
 var ws = c.windows;
 var tbs = c.tabs;
 
-// Google URL Shortener API key
-// var googleAPIKey = 'AIzaSyBNBpB4887rz6Li0hGhWcSYJwxuMtPDmvE';
+// URL Shortener API key
+var apiKey = 'qNrHUnjVBYNwep5QizEzr2DULC4xJS9X';
 
 /**
  * Bootstrap code.
@@ -177,6 +177,9 @@ function setTextAreaUrlAndTitle() {
             url: 'https://pg1x.link/api/link',
             contentType: 'application/json',
             data: dataToPost,
+            headers: {
+              'X-API-KEY': apiKey
+            },
             success: function (data, dataType) {
               url = data.short_url;
             },
