@@ -48,10 +48,7 @@
     "message": "末尾に改行を入れない"
   },
   "url_shorten": {
-    "message": "URL短縮 (l.pg1x.com powered by Firebase)"
-  },
-  "url_shorten_secure": {
-    "message": "短縮 URL を短くしすぎない"
+    "message": "URL短縮 (by pg1x.link)"
   },
   "copy_button": {
     "message": "テキストエリアの内容をコピー"

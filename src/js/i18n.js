@@ -20,6 +20,5 @@ $(function() {
   $('#rest').html(chrome.i18n.getMessage("rest"));
   $('#not_insert_newline').html(chrome.i18n.getMessage("not_insert_newline"));
   $('#url_shorten').html(chrome.i18n.getMessage("url_shorten"));
-  $('#url_shorten_secure').html(chrome.i18n.getMessage("url_shorten_secure"));
   $('#copyButton').val(chrome.i18n.getMessage("copy_button"));
 });
